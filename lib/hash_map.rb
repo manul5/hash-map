@@ -11,27 +11,23 @@ class HashMap
 
   def grow_if_needed
     # Usamos compact.size para contar elementos no nil
-    if @buckets.compact.size > (@capacity * @load_factor).round
-      # Guardamos los elementos existentes antes de redimensionar
-      old_buckets = @buckets.dup
-      # Duplicamos la capacidad (o otro factor de crecimiento)
-      @capacity *= 2
-      # Reiniciamos los buckets con el nuevo tamaño
-      @buckets = Array.new(@capacity)
+    return unless @buckets.compact.size > (@capacity * @load_factor).round
+
+    old_buckets = @buckets.dup
+    # Duplicamos la capacidad (o otro factor de crecimiento)
+    @capacity *= 2
+    # Reiniciamos los buckets con el nuevo tamaño
+    @buckets = Array.new(@capacity)
       # Reinsertamos los elementos en los nuevos buckets
-      rehash(old_buckets)
-    end
+    rehash(old_buckets)
+    
   end
   
   def rehash(old_buckets)
     old_buckets.each do |bucket|
       next if bucket.nil?
-      # Recalculamos el índice para cada elemento con el nuevo @capacity
-      bucket.each do |key, value|
-        index = key.hash % @capacity
-        @buckets[index] ||= []  # Inicializa un array si no existe
-        @buckets[index] << [key, value]
-      end
+      
+      
     end
   end
 
