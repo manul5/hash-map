@@ -16,15 +16,34 @@ class HashMap
     hash_code
   end
 
+  def need_to_grow?
+    @buckets.compact.size > (@capacity * @load_factor).round
+  end
+
   def get_bucket(hash_code)
     hash_code % @capacity
   end
 
-  def set(key,value)
+  def handle_collition(bucket_number, key, value)
+    for node in @buckets[bucket_number]
+      if node[0] == key
+        node[1] = value
+        return
+      end
+    end
+    @buckets[bucket_number] << [key, value]
+  end
+
+  def set(key, value)
     hash_code = hash(key)
     bucket_number = get_bucket(hash_code)
-    @buckets[bucket_number] = [] if @buckets[bucket_number].nil?
-    @buckets[bucket_number] << [key, value]
+    if @buckets[bucket_number].nil?
+      @buckets[bucket_number] = []
+      @buckets[bucket_number] << [key, value]
+    else
+      handle_collition(bucket_number, key, value)
+    end
+    
     p @buckets[bucket_number]
   end
 
