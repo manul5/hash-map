@@ -13,7 +13,4 @@ test.set('ice cream', 'white')
 test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
-# puts test.capacity
 test.set('moon', 'silver')
-puts test.buckets[1].next_node
-puts test.capacity
