@@ -19,4 +19,5 @@ test.set('moon', 'silver')
 puts test.capacity
 puts test.get('kite')
 test.set('tralalero', 'tralalerito')
-puts test.get('tralalero')
+puts test.has?('555555')
+puts test.has?('tralalero')

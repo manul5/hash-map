@@ -83,4 +83,16 @@ class HashMap
       return node[1] if node[0] == key
     end
   end
+
+  def has?(key)
+    hash_code = hash(key)
+    bucket_number = get_bucket(hash_code)
+    bucket = @buckets[bucket_number]
+    return false unless bucket
+
+    bucket.each do |node|
+      return true if node[0] == key
+    end
+    false
+  end
 end
