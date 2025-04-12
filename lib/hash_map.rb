@@ -102,7 +102,6 @@ class HashMap
     bucket_number = get_bucket(hash_code)
     bucket = @buckets[bucket_number]
     return nil unless bucket
-
     bucket.each do |node|
       if node[0] == key
         removed_value = node[1]
@@ -111,5 +110,9 @@ class HashMap
     end
     @buckets[bucket_number] = bucket
     removed_value
+  end
+
+  def length
+    @size
   end
 end

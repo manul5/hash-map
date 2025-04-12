@@ -26,3 +26,4 @@ puts test.has?('tralalero')
 puts test.has?('lion')
 puts test.remove('lion')
 puts test.has?('lion')
+puts test.length
