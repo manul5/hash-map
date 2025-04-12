@@ -13,6 +13,8 @@ test.set('ice cream', 'white')
 test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
+puts test.capacity
 test.set('moon', 'silver')
-test.set('tralalero', 'tralala')
-test.set('tralalero', 'tralalerito')
+puts test.capacity
+p test.buckets
+#test.set('tralalero', 'tralalerito')

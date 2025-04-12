@@ -1,10 +1,11 @@
 class HashMap
-  attr_accessor :capacity, :buckets
+  attr_accessor :capacity, :buckets, :size
 
   def initialize
     @load_factor = 0.75
     @capacity = 16
     @buckets = []
+    @size = 0
   end
 
   def hash(key)
@@ -16,11 +17,37 @@ class HashMap
     hash_code
   end
 
-  def need_to_grow?
-    @buckets.compact.size > (@capacity * @load_factor).round
+  def grow_needed?
+    @size + 1 > (@capacity * @load_factor).round
+  end
+
+  def rehash(old_buckets)
+    @buckets = []
+    @size = 0
+    old_buckets.each do |list|
+      next if list.nil?
+      list.each do |node|
+        hash_code = hash(node[0])
+        bucket_number = get_bucket(hash_code)
+        if @buckets[bucket_number].nil?
+          @buckets[bucket_number] = []
+          @buckets[bucket_number] << [node[0], node[1]]
+        else
+          handle_collition(bucket_number, node[0], node[1])
+        end
+        @size += 1
+      end
+    end
+  end
+
+  def grow
+    @capacity *= 2
+    old_buckets = @buckets
+    rehash(old_buckets)
   end
 
   def get_bucket(hash_code)
+    grow if grow_needed?
     hash_code % @capacity
   end
 
@@ -43,7 +70,7 @@ class HashMap
     else
       handle_collition(bucket_number, key, value)
     end
-    
+    @size += 1
     p @buckets[bucket_number]
   end
 
