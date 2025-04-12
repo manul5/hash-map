@@ -14,7 +14,9 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 puts test.capacity
+puts test.get('kite')
 test.set('moon', 'silver')
 puts test.capacity
-p test.buckets
-#test.set('tralalero', 'tralalerito')
+puts test.get('kite')
+test.set('tralalero', 'tralalerito')
+puts test.get('tralalero')

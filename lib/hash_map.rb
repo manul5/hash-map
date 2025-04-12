@@ -71,8 +71,16 @@ class HashMap
       handle_collition(bucket_number, key, value)
     end
     @size += 1
-    p @buckets[bucket_number]
   end
 
+  def get(key)
+    hash_code = hash(key)
+    bucket_number = get_bucket(hash_code)
+    bucket = @buckets[bucket_number]
+    return nil unless bucket
 
+    bucket.each do |node|
+      return node[1] if node[0] == key
+    end
+  end
 end
