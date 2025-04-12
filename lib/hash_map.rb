@@ -109,6 +109,7 @@ class HashMap
       end
     end
     @buckets[bucket_number] = bucket
+    @size -= 1
     removed_value
   end
 
@@ -120,5 +121,17 @@ class HashMap
     @buckets = []
     @size = 0
     @capacity = 16
+  end
+
+  def keys
+    keys = []
+    @buckets.each do |list|
+      next if list.nil?
+
+      list.each do |node|
+        keys << node[0]
+      end
+    end
+    keys
   end
 end

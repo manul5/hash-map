@@ -26,5 +26,5 @@ puts test.has?('tralalero')
 puts test.has?('lion')
 puts test.remove('lion')
 puts test.has?('lion')
-test.clear
-p test.buckets
+p test.keys
+puts test.length
