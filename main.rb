@@ -27,4 +27,5 @@ puts test.has?('lion')
 puts test.remove('lion')
 puts test.has?('lion')
 p test.keys
-puts test.length
+p test.values
+p test.entries

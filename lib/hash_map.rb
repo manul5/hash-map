@@ -134,4 +134,28 @@ class HashMap
     end
     keys
   end
+
+  def values
+    values = []
+    @buckets.each do |list|
+      next if list.nil?
+
+      list.each do |node|
+        values << node[1]
+      end
+    end
+    values
+  end
+
+  def entries
+    entries = []
+    @buckets.each do |list|
+      next if list.nil?
+
+      list.each do |node|
+        entries << node
+      end
+    end
+    entries
+  end
 end
