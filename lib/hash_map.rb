@@ -115,4 +115,10 @@ class HashMap
   def length
     @size
   end
+
+  def clear
+    @buckets = []
+    @size = 0
+    @capacity = 16
+  end
 end
