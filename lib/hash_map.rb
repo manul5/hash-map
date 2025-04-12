@@ -95,4 +95,21 @@ class HashMap
     end
     false
   end
+
+  def remove(key)
+    removed_value = nil
+    hash_code = hash(key)
+    bucket_number = get_bucket(hash_code)
+    bucket = @buckets[bucket_number]
+    return nil unless bucket
+
+    bucket.each do |node|
+      if node[0] == key
+        removed_value = node[1]
+        bucket.delete(node)
+      end
+    end
+    @buckets[bucket_number] = bucket
+    removed_value
+  end
 end
